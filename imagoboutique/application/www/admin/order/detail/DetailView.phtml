@@ -1,0 +1,42 @@
+<link rel="stylesheet" type="text/css" href="<?=$wwwUrl?>/css/style.css"><!--adminOrder-->
+
+<h3>Détail commande</h3>
+
+<a class="comeback" href="<?=$requestUrl?>/admin/order"><i class="fas fa-arrow-circle-left"></i> Retour aux commandes</a>
+
+<div class="customer-detail">
+	<p><?= $orderdetail['user']['firstName'] ?> <?= $orderdetail['user']['lastName'] ?></p>
+	<p><?= $orderdetail['user']['address'] ?></p>
+	<p><?= $orderdetail['user']['zip'] ?> <?= $orderdetail['user']['city'] ?></p>
+</div>
+
+<div>
+	<table class="t-order">
+		<thead>
+			<th>Id Produit</th>
+			<th>Nom</th>
+			<th>Quantité</th>
+			<th>Prix unitaire</th>
+			<th>Prix total</th>
+		</thead>
+		
+		<tbody>
+		<?php foreach($orderdetail['orderDetail'] as $order) {?>
+			<tr>
+				<td><?=$order['id']?></td>
+				<td><?=$order['Name']?></td>
+				<td><?=$order['quantity']?></td>
+				<td><?=number_format($order['priceEach'],2)?> €</td>
+				<td><?= number_format($order['quantity']*$order['priceEach'], 2) ?> €</td>
+			</tr>
+		<?php }?>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>Prix total : </td>
+				<td><?=number_format($orderdetail['order']['totalAmount'], 2)?> €</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,73 @@
+<link rel="stylesheet" type="text/css" href="<?= $wwwUrl ?>/css/style.css"><!--admin-->
+
+<h3>Admin</h3>
+<div>	
+	<hr/>
+	<h4>Gestion des produits</h4>
+	<a class="addTee" href="<?=$requestUrl ?>/admin/product/add"><i class="fas fa-plus-circle"></i> Ajouter un nouveau produit</a>
+	<table class="tableTee">
+		<tr class="titleTee">	
+			<td>Photo</td>
+			<td>Nom</td>
+			<td>Action</td>
+		</tr>
+
+		<?php foreach($tee as $tee) {?>
+
+			<tr>	
+				<td class="pTee"><img src="<?= $wwwUrl ?>/images/tee/<?=$tee['Photo']?>"></td>
+				<td class="nTee"><?= $tee['Name'] ?></td>
+				<td class="aTee">
+					<a href="<?=$requestUrl ?>/admin/product/update?id=<?=$tee['Id']?>"><i class="fas fa-pen"></i></a>
+					<a href="<?=$requestUrl ?>/admin/product/delete?id=<?=$tee['Id']?>"><i class="fas fa-trash-alt"></i></a>
+				</td>
+			</tr>
+
+		<?php } ?>
+
+		</table>
+
+		<hr/>
+		<h4>Gestion des utilisateurs</h4>
+
+		<table class="userTable">
+
+			<tr>	
+				<td>Nom</td>
+				<td>Prénom</td>
+				<td>Email</td>
+				<td>Role</td>
+				<td>Action</td>
+			</tr>
+
+			<?php foreach($users as $user) {?>
+				<?php if($user['email'] != $_SESSION['user']['email'] || $user['email'] != 'leo@gmail.com' ) { ?>
+				<tr>	
+					<td><?=$user['lastName']?></td>
+					<td><?=$user['firstName']?></td>
+					<td><?=$user['email']?></td>
+					<td>
+						<select class="userRole" data-id="<?=$user['Id']?>">
+						<?php if($user['role'] == 'user') {?>
+							<option value="user" selected="">user</option>
+							<option value="admin">admin</option>
+						<?php } else {?>
+							<option value="admin" selected>admin</option>
+							<option value="user">user</option>
+						<?php } ?>
+						</select>
+					</td>
+					<td>
+						<a href="<?=$requestUrl ?>/admin/user/delete?id=<?=$user['Id']?>"><i class="fas fa-trash-alt"></i></a>
+					</td>
+				</tr>
+				<?php } ?>
+			<?php } ?>
+
+		</table>
+
+		<hr/>
+		<h4>Gestion des commandes</h4>
+		<a class="addTee" href="<?=$requestUrl ?>/admin/order"><i class="fas fa-plus-circle"></i> Gestion des commandes</a>
+</div>
+<script type="text/javascript" src="<?= $wwwUrl ?>/js/admin.js"></script>

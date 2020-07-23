@@ -1,0 +1,14 @@
+<h3>Ajoutez un nouveau produit</h3>
+
+<a class="comeBack" href="<?= $requestUrl ?>/admin"><i class="fas fa-arrow-circle-left"></i>Retour vers l'admin</a>
+
+<form class="b-form" action="<?= $requestUrl ?>/admin/product/add" method="POST" enctype="multipart/form-data">
+	<input type="text" name="name" placeholder="Nom du produit">
+	<input type="file" name="tee_pict">
+	<textarea type="text" name="description">
+	</textarea>
+	<input type="text" name="quantity" placeholder="Quantité">
+	<input type="text" name="buyPrice" placeholder="Prix de d'achat">
+	<input type="text" name="salePrice" placeholder="Prix de vente">
+	<input type="submit" name="Enregister">
+</form>
